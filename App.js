@@ -40,7 +40,7 @@ export default function App() {
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="home" color={color} size={26} />
+            <MaterialCommunityIcons name="home" color={color} size={27} />
           ),
         }}
       />
@@ -50,7 +50,7 @@ export default function App() {
         options={{
           tabBarLabel: 'Search',
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="magnify" color={color} size={26} />
+            <MaterialCommunityIcons name="magnify" color={color} size={30} />
           ),
         }}
       />
@@ -60,11 +60,20 @@ export default function App() {
         options={{
           tabBarLabel: 'Library',
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="bookshelf" color={color} size={26} />
+            <MaterialCommunityIcons name="bookshelf" color={color} size={30} />
           ),
         }}
       />
-
+      <Tab.Screen
+        name="Login"
+        component={Login}
+        options={{
+          tabBarLabel: 'Login',
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="login" color={color} size={27} />
+          ),
+        }}
+      />
 
       </Tab.Navigator>
       </NavigationContainer>

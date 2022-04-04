@@ -53,9 +53,9 @@ export default function Login() {
         }
     }, [response])
 
-    const storeData = async(token = string) => {
+    const storeData = async(access_token) => {
         try {
-            await AsyncStorage.setItem('@access_token', token)
+            await AsyncStorage.setItem('@access_token', access_token)
         } catch(e) {
             console.log('Error', e);
         }
