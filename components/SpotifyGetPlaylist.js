@@ -2,33 +2,39 @@ import React, {useState, useEffect} from 'react'
 import {StyleSheet, View, Text, Button, Alert} from 'react-native'
 import { useTheme } from '@react-navigation/native';
 import axios from 'axios';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { AsyncStorage } from '@react-native-async-storage/async-storage';
+import Login from '../screens/Login';
 
+const apiPrefix = 'https://api.spotify.com/v1';
 
-export default function SpotifyGetPlaylist() {
+export default function SpotifyGetPlaylist(props) {
    
     const { colors } = useTheme();
     
     const [token, setToken] = useState('');
     const [data, setData] = useState({});
     
-    // useEffect(() => {
-    //     if (AsyncStorage.getItem('@access_token')) {
-    //         setToken(AsyncStorage.getItem('@access_token'));
-    //     }
-    // }, []);
+    React.useEffect(() => {
+        getData();
+    }, []);
 
-    readData = async() => {
+   const getData = async() => {
+       
         try {
-            setToken = await AsyncStorage.getItem("@access_token");
-
+           setToken = await AsyncStorage.getItem('@access_token');
+            console.log("token retrieved")
         } catch (error) {
             Alert.alert('Error reading data');
         }
+        
     }
 
+   
+    
     const handleGetPlaylists = () => {
-        console.log(handleGetPlaylists)
+        
+        
+        
         axios.get("https://api.spotify.com/v1/me/playlists", {
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -36,6 +42,7 @@ export default function SpotifyGetPlaylist() {
             
         }).then(response => {
             setData(response.data);
+            console.log(response.data)
         })
         .catch((error) => {
             console.log(error);
