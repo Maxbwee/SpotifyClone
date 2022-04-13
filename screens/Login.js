@@ -30,8 +30,8 @@ export default function Login(props) {
     // OAUTH2 for Spotify
     const [request, response, promptAsync] = useAuthRequest({
         responseType: ResponseType.Token,
-        clientId: '6243b86671b0424482795fd9f008d9a1',
-        clientSecret: '30eb18e60f9849c48f36569166ae40af',
+        clientId: '',
+        clientSecret: '',
         scopes: [
             'user-read-currently-playing',
             'user-read-recently-played',
