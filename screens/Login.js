@@ -30,8 +30,8 @@ export default function Login(props) {
     // OAUTH2 for Spotify
     const [request, response, promptAsync] = useAuthRequest({
         responseType: ResponseType.Token,
-        clientId: '',
-        clientSecret: '',
+        clientId: '6243b86671b0424482795fd9f008d9a1',
+        clientSecret: '30eb18e60f9849c48f36569166ae40af',
         scopes: [
             'user-read-currently-playing',
             'user-read-recently-played',
@@ -56,7 +56,7 @@ export default function Login(props) {
         if (response?.type === 'success') {
            
             const { access_token } = response.params;
-             console.log('accessToken', access_token)
+             console.log('accessToken', access_token.toString())
             // save code to local storage
             // Käytetään setToken(access_token) niin toimii login sivulla getplaylist
             storeData(access_token)
@@ -66,7 +66,7 @@ export default function Login(props) {
     const storeData = async(access_token) => {
         try {
             
-            await AsyncStorage.setItem('@access_token', access_token)
+            await AsyncStorage.setItem('@access_token', access_token.toString())
             console.log("access token saved")
         } catch (e) {
             console.log('Erorr', e);
