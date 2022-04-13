@@ -45,6 +45,7 @@ export default function Login(props) {
         // In order to follow the "Authorization Code Flow" to fetch token after authorizationEndpoint
         // this must be set to false
         usePKCE: false,
+        // Androidilla pitää käyttää omaa exp:// ip osoitetta.
         redirectUri: 'exp://192.168.1.3:19000'
 
     }, 
