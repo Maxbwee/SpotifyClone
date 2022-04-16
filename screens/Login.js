@@ -1,10 +1,11 @@
 import  {useState, useEffect} from 'react'
 import React from 'react'
-import {StyleSheet, View, Text, TouchableOpacity, Alert, Button } from 'react-native'
+import {StyleSheet, View, Text, TouchableOpacity, Alert, Button, Image } from 'react-native'
 import {ResponseType, useAuthRequest,  makeRedirectUri} from 'expo-auth-session'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as AuthSession from 'expo-auth-session';
 import axios from 'axios';
+import spotifylogin from '../assets/SpotifyLogin1.png';
 
 
 const discovery = {
@@ -46,7 +47,7 @@ export default function Login(props) {
         // this must be set to false
         usePKCE: false,
         // Androidilla pitää käyttää omaa exp:// ip osoitetta.
-        redirectUri: 'exp://192.168.1.3:19000'
+        redirectUri: 'exp://192.168.1.2:19000'
 
     }, 
         discovery
@@ -72,39 +73,30 @@ export default function Login(props) {
             console.log('Erorr', e);
         }
     }
-    const handleGetPlaylists = () => {
-       
-        
-         axios.get("https://api.spotify.com/v1/me/playlists", {
-             headers: {
-                 Authorization: `Bearer ${token}`,
-             },
-             
-         }).then(response => {
-             setData(response.data);
-             console.log(response.data)
-         })
-         .catch((error) => {
-             console.log(error);
-         });
-     };
-
+   
     return (
         
         <View style={{flex:1, justifyContent:'center', alignItems: 'center'}}>
-            <Button
+            <Image 
+                source={spotifylogin}
+                resizeMode="contain"
+                style={styles.image}
+            />
+            <View>
+                <Text style={{color: 'white', marginBottom: 100, fontSize: 18, fontWeight: 'bold'}}>Login with Spotify to access your data!</Text>
+            </View>
+            <TouchableOpacity
+            style={styles.button2}
             color="#1DB954"
             disabled={!request}
             title="Login"
             onPress={() => {
                 promptAsync();
             }}
-           /> 
-           
-        <TouchableOpacity onPress={handleGetPlaylists} color="#1DB954" style={styles.button2}>
-        <Text>Get your playlists</Text>
-        </TouchableOpacity>
-       
+            > 
+            <Text style={styles.textstyle}>Login with Spotify</Text>
+            </TouchableOpacity>           
+        
         </View>
     
         
@@ -114,7 +106,7 @@ export default function Login(props) {
 const styles = StyleSheet.create({
     loginbtn: {
         backgroundColor: '#1DB954',
-        width: 300, 
+        width: 100, 
         padding: 50,
         
     },
@@ -122,9 +114,21 @@ const styles = StyleSheet.create({
         backgroundColor: '#1DB954',
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 100,
+         marginBottom: 200,
         width: 200,
         padding: 20,
 
-    }
+    },
+    textstyle: {
+        color: 'white',
+        fontSize: 16,
+
+    },  
+        image: {
+        
+        justifyContent: "center",
+        width:400,
+        height:200,
+        marginTop: 100,
+      },
   });
