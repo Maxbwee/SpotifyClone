@@ -30,9 +30,10 @@ export default function SpotifyGetPlaylist(props) {
                 Authorization: `Bearer ${token}`,
             },
             
-        }).then(response => {
+        })
+        .then(response => {
             setData(response.data);
-            console.log(data)
+            console.log(response.data)
         })
         .catch((error) => {
             console.log(error);
@@ -40,13 +41,13 @@ export default function SpotifyGetPlaylist(props) {
     };
     
     const renderItem = ({item}) =>{
-        <Item title={item.name} />
+        <Item title={item.name} style={{color: colors.text}}/>
     }
 
     
     return (
         <View style={styles.container}>
-            <Button onPress={handleGetPlaylists} color="#1DB954" style={{ color: colors.text, width: 100 }} title="Get your playlists"/>
+            <Button onPress={handleGetPlaylists} color="#1DB954" style={{  width: 100 }} title="Get your playlists"/>
             <FlatList
             data={data.name}
             renderItem={renderItem}

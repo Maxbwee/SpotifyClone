@@ -47,7 +47,7 @@ export default function Login(props) {
         // this must be set to false
         usePKCE: false,
         // Androidilla pitää käyttää omaa exp:// ip osoitetta.
-        redirectUri: 'exp://192.168.1.2:19000'
+        redirectUri: 'exp://192.168.1.6:19000'
 
     }, 
         discovery

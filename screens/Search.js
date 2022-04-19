@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, View, Text} from 'react-native'
 import { useTheme } from '@react-navigation/native';
+import SpotifySearchTrack from '../components/SpotifySearchTrack';
 
 export default function Search() {
 
@@ -8,7 +9,7 @@ export default function Search() {
 
     return (
         <View style={styles.container}>
-            <Text style={{ color: colors.text }}>Search screen!</Text>
+            <SpotifySearchTrack/>
         </View>
     )
 }
