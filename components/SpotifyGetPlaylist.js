@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {StyleSheet, View, Text, Button, Alert, FlatList, TouchableOpacity} from 'react-native'
+import {StyleSheet, View, Text, Button, Alert, FlatList, TouchableOpacity, Item} from 'react-native'
 import { useTheme } from '@react-navigation/native';
 import axios from 'axios';
 import  AsyncStorage  from '@react-native-async-storage/async-storage';
@@ -40,8 +40,15 @@ export default function SpotifyGetPlaylist(props) {
         });
     };
     
-    const renderItem = ({item}) =>{
-        <Item title={item.name} style={{color: colors.text}}/>
+    const renderItem = ({item}) => {
+        return( 
+            <View style={styles.item}>
+                <Text style={styles.playlistname}>{item.name[1]}</Text>
+            </View>
+
+        
+        // <Item title={data.item.name} style={styles.text} />
+        );
     }
 
     
@@ -49,7 +56,7 @@ export default function SpotifyGetPlaylist(props) {
         <View style={styles.container}>
             <Button onPress={handleGetPlaylists} color="#1DB954" style={{  width: 100 }} title="Get your playlists"/>
             <FlatList
-            data={data.name}
+            data={data}
             renderItem={renderItem}
             keyExtractor={(item) => item.id.toString()}
             />
@@ -64,4 +71,19 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       marginTop: 200,
     },
+    text: {
+        color:'white'
+    },
+    item: {
+        flexDirection: 'row',
+        padding: 5,
+        marginVertical: 2,
+        alignItems: 'center',
+      },
+      playlistname: {
+        fontSize: 16,
+        color: 'white',
+        fontWeight: 'bold',
+        alignItems: 'center',
+      },
   });

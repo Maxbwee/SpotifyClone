@@ -35,7 +35,7 @@ export default function SpotifySearchTrack() {
 
     const item = ({ item, onSelect, }) => {
       return (
-        <TouchableOpacity onPress={() => onSelect(item.title[3])}>
+        
           <View style={styles.item}>
             <Image source={{ width: 64, height: 64, uri: item.title[0]}}/>
             <View style={styles.names}>
@@ -43,7 +43,7 @@ export default function SpotifySearchTrack() {
               <Text style={styles.artist}>{ item.title[2].map(artist => artist.name).join(', ')}</Text>
             </View>
           </View>
-        </TouchableOpacity>
+        
       );
     };    
 
@@ -56,7 +56,7 @@ export default function SpotifySearchTrack() {
       .then(res => res.json())
       .then(data => {
         let result = [];
-        // Tällä saadaan al
+        // Tällä saadaan biisin kuvake, nimi ja artistin nimi haettua
         data.tracks.items.map(obj => result.push({title: [obj.album.images[2].url, obj.name, obj.artists]}));
         setSearch(result);
         
@@ -79,7 +79,7 @@ export default function SpotifySearchTrack() {
             />
             <FlatList
             data = {search}
-            keyExtractor={item => item.title[0]+item.title[1]+item.name}
+            keyExtractor={item => item.title[0]+item.title[1]}
             renderItem={item}
             />
            </View>
@@ -93,11 +93,11 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
       },
       title: {
-        fontSize: 20,
+        fontSize: 26,
         fontWeight: "bold",
         color: "white",
         padding: 5,
-        marginTop: 100,
+        marginTop: 50,
       },
       searchbar: {
         flexDirection: 'row',
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 10,
         borderBottomLeftRadius: 10,
         borderBottomRightRadius: 10,
-        marginTop: 70,
+        marginTop: 30,
         width: 350,
       },
       search: {
@@ -126,10 +126,10 @@ const styles = StyleSheet.create({
         left: 10,
       },
       artist: {
-        fontSize: 13,
+        fontSize: 12,
         color: 'grey',
         fontWeight: 'bold',
-        left: 12,
+        left: 10,
         marginVertical: 5,
       },
       item: {
@@ -137,6 +137,7 @@ const styles = StyleSheet.create({
         padding: 5,
         marginVertical: 2,
         alignItems: 'center',
+        right: 10,
       },
 
 });
