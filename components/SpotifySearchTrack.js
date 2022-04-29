@@ -40,7 +40,7 @@ export default function SpotifySearchTrack() {
             <Image source={{ width: 64, height: 64, uri: item.title[0]}}/>
             <View style={styles.names}>
             <Text style={styles.songname}>{item.title[1]}</Text>
-              <Text style={styles.artist}>{ item.title[2].map(artist => artist.name).join(', ')}</Text>
+            <Text style={styles.artist}>{ item.title[2].map(artist => artist.name).join(', ')}</Text>
             </View>
           </View>
         
@@ -75,7 +75,6 @@ export default function SpotifySearchTrack() {
             placeholderTextColor={"black"}
             onChangeText= {text => onChange(text)}
             value= {text}
-            selectionColor= "green"
             />
             <FlatList
             data = {search}
