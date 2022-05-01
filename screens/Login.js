@@ -4,6 +4,7 @@ import {StyleSheet, View, Text, TouchableOpacity, Alert, Button, Image } from 'r
 import {ResponseType, useAuthRequest,  makeRedirectUri} from 'expo-auth-session'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import spotifylogin from '../assets/SpotifyLogin1.png';
+import {CLIENT_ID, CLIENT_SECRET} from '@env'
 
 
 const discovery = {
@@ -16,8 +17,8 @@ export default function Login() {
     // OAUTH2 for Spotify
     const [request, response, promptAsync] = useAuthRequest({
         responseType: ResponseType.Token,
-        clientId: '6243b86671b0424482795fd9f008d9a1',
-        clientSecret: '30eb18e60f9849c48f36569166ae40af',
+        clientId: CLIENT_ID,
+        clientSecret: CLIENT_SECRET,
         scopes: [
             'user-read-currently-playing',
             'user-read-recently-played',
