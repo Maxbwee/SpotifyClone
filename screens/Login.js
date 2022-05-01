@@ -3,8 +3,6 @@ import React from 'react'
 import {StyleSheet, View, Text, TouchableOpacity, Alert, Button, Image } from 'react-native'
 import {ResponseType, useAuthRequest,  makeRedirectUri} from 'expo-auth-session'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as AuthSession from 'expo-auth-session';
-import axios from 'axios';
 import spotifylogin from '../assets/SpotifyLogin1.png';
 
 
@@ -13,21 +11,8 @@ const discovery = {
     tokenEndpoint: 'https://accounts.spotify.com/api/token',      
 };
 
-export default function Login(props) {
+export default function Login() {
     
-    const [token, setToken] = useState('');
-    const [data, setData] = useState({});
-
-    // const redirecturlIOS =
-
-    // makeRedirectUri({
-    //     preferLocalhost: true
-    // })
-    
-    // const redirecturlANDROID =
-    // AuthSession.makeRedirectUri({})
-
-
     // OAUTH2 for Spotify
     const [request, response, promptAsync] = useAuthRequest({
         responseType: ResponseType.Token,
@@ -66,7 +51,6 @@ export default function Login(props) {
 
     const storeData = async(access_token) => {
         try {
-            
             await AsyncStorage.setItem('@access_token', access_token.toString())
             console.log("access token saved")
         } catch (e) {
@@ -75,7 +59,6 @@ export default function Login(props) {
     }
    
     return (
-        
         <View style={{flex:1, justifyContent:'center', alignItems: 'center'}}>
             <Image 
                 source={spotifylogin}
@@ -83,7 +66,7 @@ export default function Login(props) {
                 style={styles.image}
             />
             <View>
-                <Text style={{color: 'white', marginBottom: 100, fontSize: 18, fontWeight: 'bold'}}>Login with Spotify to access your data!</Text>
+            <Text style={{color: 'white', marginBottom: 100, fontSize: 20, fontWeight: 'bold'}}>Login with Spotify to access your data!</Text>
             </View>
             <TouchableOpacity
             style={styles.button2}
@@ -95,12 +78,8 @@ export default function Login(props) {
             }}
             > 
             <Text style={styles.textstyle}>Login with Spotify</Text>
-            </TouchableOpacity>           
-        
+            </TouchableOpacity>
         </View>
-    
-        
-        
     );
 }
 const styles = StyleSheet.create({
@@ -108,7 +87,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#1DB954',
         width: 100, 
         padding: 50,
-        
     },
     button2: {
         backgroundColor: '#1DB954',
@@ -117,15 +95,12 @@ const styles = StyleSheet.create({
          marginBottom: 200,
         width: 200,
         padding: 20,
-
     },
     textstyle: {
         color: 'white',
         fontSize: 16,
-
     },  
-        image: {
-        
+    image: {
         justifyContent: "center",
         width:400,
         height:200,

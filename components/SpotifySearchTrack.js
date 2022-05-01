@@ -11,7 +11,6 @@ import { useTheme } from '@react-navigation/native';
 export default function SpotifySearchTrack() {
 
     const { colors } = useTheme();
-    
     const [text, setText] = useState('');
     const [search , setSearch] = useState([]);
     const [token, setToken] = useState('');
@@ -35,7 +34,6 @@ export default function SpotifySearchTrack() {
 
     const item = ({ item, onSelect, }) => {
       return (
-        
           <View style={styles.item}>
             <Image source={{ width: 64, height: 64, uri: item.title[0]}}/>
             <View style={styles.names}>
@@ -43,7 +41,6 @@ export default function SpotifySearchTrack() {
             <Text style={styles.artist}>{ item.title[2].map(artist => artist.name).join(', ')}</Text>
             </View>
           </View>
-        
       );
     };    
 
@@ -61,9 +58,6 @@ export default function SpotifySearchTrack() {
         setSearch(result);
         
       });
-    
-      
-
 
     return(
        <SafeAreaView style={styles.container}>

@@ -10,7 +10,7 @@ export default function SpotifyGetPlaylist() {
    
     const { colors } = useTheme();
     const [token, setToken] = useState('');
-    const [data, setData] = useState({});
+    const [data, setData] = useState([]);
     
     React.useEffect(() => {
         getData();
@@ -21,7 +21,7 @@ export default function SpotifyGetPlaylist() {
             console.log("token retrieved")
     }
 
-   
+
     let playlistSearchApi = 'https://api.spotify.com/v1/me/playlists';
     const handleGetPlaylists = () => {
         fetch(playlistSearchApi, {
@@ -32,23 +32,25 @@ export default function SpotifyGetPlaylist() {
           .then(data => {
             let result = [];
             console.log(data)
-            data.items.name.map(obj => result.push({title: [obj.name]}));
+            data.items.map(obj => result.push({title: [obj.name]}));
             setData(result);
+            console.log(result);
         });
     }
-    const renderItem = ({item}) => {
+    const item = ({item}) => {
         return( 
             <View style={styles.item}>
-                <Text style={styles.playlistname}>{item.title[1]}</Text>
+                <Text style={styles.playlistname}>{item.title}</Text>
             </View>
         );
     }
     return (
         <View style={styles.container}>
-            <Button onPress={handleGetPlaylists} color="#1DB954" style={{  width: 100 }} title="Get your playlists"/>
+            <Text style={styles.heading}>Playlists</Text>
+            <Button onPress={handleGetPlaylists} color="#1DB954" style={{width: 100}} title="Get your playlists"/>
             <FlatList
             data={data}
-            renderItem={renderItem}
+            renderItem={item}
             keyExtractor={item => item.title[1]}
             />
             
@@ -57,19 +59,18 @@ export default function SpotifyGetPlaylist() {
 }
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginTop: 200,
-    },
-    text: {
-        color:'white'
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 50
     },
     item: {
         flexDirection: 'row',
         padding: 5,
         marginVertical: 2,
         alignItems: 'center',
+        color:'white',
+        marginTop: 20
       },
       playlistname: {
         fontSize: 16,
@@ -77,4 +78,11 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         alignItems: 'center',
       },
+      heading: {
+          fontSize: 26,
+          color: 'white',
+          fontWeight: 'bold',
+          paddingBottom: 50,
+          right: 120,
+      }
   });

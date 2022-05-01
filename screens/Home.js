@@ -10,14 +10,13 @@ export default function Home() {
         
         <View style={styles.container}>
             <Image 
-
                 source={SpotifyLogoSmall}
                 resizeMode="contain"
                 style={styles.image}
             >
             </Image>
-            <Text style={{ color: colors.text, fontWeight: 'bold', fontSize: 24  }}>Welcome to spotify!</Text>
-            
+            <Text style={{ color: colors.text, fontWeight: 'bold', fontSize: 26  }}>Welcome to spotify!</Text>
+            <Text style={{ color: colors.text, fontSize: 16, marginTop: 20}}>Head over to the login page to start exploring</Text>
         </View>
     )
 }
@@ -27,13 +26,12 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
       marginBottom: 300
-      
     },
     image: {
         flex:1,
         justifyContent: "center",
         width:300,
-        height:90,
+        height:100,
         marginBottom: 170
       },
   });

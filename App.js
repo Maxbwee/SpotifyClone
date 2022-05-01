@@ -30,7 +30,7 @@ export default function App() {
   return (
     <NavigationContainer theme={scheme === 'dark' ? DarkTheme : MyTheme}>
     <Tab.Navigator
-      initialRouteName="Login"
+      initialRouteName="Home"
       activeColor="white"
       barStyle={{ backgroundColor: '#4f4f4f' }}
     >
