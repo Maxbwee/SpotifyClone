@@ -93,9 +93,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#1DB954',
         alignItems: 'center',
         justifyContent: 'center',
-         marginBottom: 200,
+        marginBottom: 200,
         width: 200,
         padding: 20,
+        borderRadius:20
     },
     textstyle: {
         color: 'white',
