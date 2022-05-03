@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import {StyleSheet, View, Text, Button, FlatList, TouchableOpacity, Item} from 'react-native'
+import {StyleSheet, View, Text, FlatList, TouchableOpacity} from 'react-native'
 import { useTheme } from '@react-navigation/native';
-import axios from 'axios';
 import  AsyncStorage  from '@react-native-async-storage/async-storage';
 
 
@@ -53,7 +52,7 @@ export default function SpotifyGetPlaylist() {
             <FlatList
             data={data}
             renderItem={item}
-            keyExtractor={item => item.title[1]}
+            keyExtractor={item => item.title[0] + item.title[1]}
             />
             <TouchableOpacity
             style={styles.button2}

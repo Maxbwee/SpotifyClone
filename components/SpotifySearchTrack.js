@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { View, SafeAreaView, Text, StyleSheet, Image, TextInput, FlatList, TouchableOpacity} from 'react-native';
-import axios from 'axios';
 import  AsyncStorage  from '@react-native-async-storage/async-storage';
 import { useTheme } from '@react-navigation/native';
 
@@ -32,7 +31,7 @@ export default function SpotifySearchTrack() {
         }
     }
 
-    const item = ({ item, onSelect, }) => {
+    const item = ({ item }) => {
       return (
           <View style={styles.item}>
             <Image source={{ width: 64, height: 64, uri: item.title[0]}}/>
@@ -68,7 +67,7 @@ export default function SpotifySearchTrack() {
             placeholder= "Artist or song"
             placeholderTextColor={"black"}
             onChangeText= {text => onChange(text)}
-            value= {text}
+            value= {text} 
             />
             <FlatList
             data = {search}

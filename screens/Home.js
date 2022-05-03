@@ -1,5 +1,5 @@
 import React from 'react'
-import {StyleSheet, View, Text, Image, ImageBackground} from 'react-native'
+import {StyleSheet, View, Text, Image} from 'react-native'
 import { useTheme } from '@react-navigation/native';
 import SpotifyLogoSmall from '../assets/SpotifyLogo.png';
 
