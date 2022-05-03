@@ -13,6 +13,7 @@ import Library from './screens/Library';
 
 const Tab = createMaterialBottomTabNavigator();
 
+// This is used throughout the whole application for the dark theme.
 const MyTheme = {
   ...DefaultTheme,
   colors: {
@@ -28,6 +29,7 @@ export default function App() {
   const scheme = useColorScheme();
 
   return (
+    // This whole part is used for the bottom tab navigation
     <NavigationContainer theme={scheme === 'dark' ? DarkTheme : MyTheme}>
     <Tab.Navigator
       initialRouteName="Home"
@@ -74,7 +76,6 @@ export default function App() {
           ),
         }}
       />
-
       </Tab.Navigator>
       </NavigationContainer>
   );

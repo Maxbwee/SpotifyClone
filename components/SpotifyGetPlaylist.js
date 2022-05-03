@@ -7,20 +7,23 @@ import  AsyncStorage  from '@react-native-async-storage/async-storage';
 
 export default function SpotifyGetPlaylist() {
    
+    // Variables for the functiom
     const { colors } = useTheme();
     const [token, setToken] = useState('');
     const [data, setData] = useState([]);
     
+    // This is used to get the access token when the user opens this tab 
     React.useEffect(() => {
         getData();
     }, []);
 
+    // Gets the users access token from local storage
    const getData = async() => {
            setToken (await AsyncStorage.getItem('@access_token'));
             console.log("token retrieved")
     }
 
-
+    // Using handleGetPlaylists we are able to fetch a users publicly shown playlists
     let playlistSearchApi = 'https://api.spotify.com/v1/me/playlists';
     const handleGetPlaylists = () => {
         fetch(playlistSearchApi, {
@@ -31,11 +34,14 @@ export default function SpotifyGetPlaylist() {
           .then(data => {
             let result = [];
             console.log(data)
+            // Mapping the results to an array of the fetch 
+            // to get the name of the playlist and the user who created the playlist
             data.items.map(obj => result.push({title: [obj.name, obj.owner.display_name]}));
             setData(result);
             console.log(result);
         });
     }
+    // This is the render item used in the FlatList component to show playlist name and user who created the playlist
     const item = ({item}) => {
         return( 
             <View style={styles.item}>
@@ -78,7 +84,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#1DB954',
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 80,
+        marginVertical: 40,
+        marginBottom: 60,
+        marginTop: 50,
         width: 200,
         padding: 20,
         borderRadius:20
@@ -90,13 +98,14 @@ const styles = StyleSheet.create({
     playlistname:{
         color: 'white',
         fontSize: 20,
-        right: 110
+        right: 100
     },
     username:{
         color: 'white',
         fontSize: 20,
         left: 100,
-        marginBottom: 10
+        marginBottom: 10,
+        marginVertical: -25
     },
     item: {
         flexDirection: 'row',

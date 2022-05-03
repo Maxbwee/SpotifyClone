@@ -23,7 +23,10 @@ export default function Login() {
             'user-read-currently-playing',
             'user-read-recently-played',
             'user-read-playback-state',
+            'playlist-read-collaborative',
             'user-top-read',
+            // Using this for the demo to show the login
+            // 'playlist-read-private',
             'user-modify-playback-state',
             'streaming',
             'playlist-modify-public ',
@@ -32,7 +35,7 @@ export default function Login() {
         // In order to follow the "Authorization Code Flow" to fetch token after authorizationEndpoint
         // this must be set to false
         usePKCE: false,
-        // Androidilla pitää käyttää omaa exp:// ip osoitetta.
+        // You need to use your own exp:// address on Android.
         redirectUri: 'exp://192.168.1.4:19000'
 
     }, 
@@ -43,13 +46,16 @@ export default function Login() {
         if (response?.type === 'success') {
            
             const { access_token } = response.params;
-             console.log('accessToken', access_token.toString())
-            // save code to local storage
-            // Käytetään setToken(access_token) niin toimii login sivulla getplaylist
+            // To see if the access token saved properly in the console
+            console.log('accessToken', access_token.toString())
+            // Save code to local storage
+            // Use setToken(access_token) to get getplaylist to show on the login page
+            // The above mentioned was used during early development stages. No longer has a use
             storeData(access_token)
         }
     }, [response])
 
+    // Storing the access token with Async Storage
     const storeData = async(access_token) => {
         try {
             await AsyncStorage.setItem('@access_token', access_token.toString())
